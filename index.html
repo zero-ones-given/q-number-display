@@ -131,13 +131,13 @@
           }
         }
 
-        document.querySelector("#increment-both").addEventListener('click', incrementBoth);
+        document.querySelector("#increment-both").addEventListener('mouseup', incrementBoth);
 
-        document.querySelector("#increment-red").addEventListener('click', function() { changeValue(elementRed, 1) });
-        document.querySelector("#decrement-red").addEventListener('click', function() { changeValue(elementRed, -1) });
+        document.querySelector("#increment-red").addEventListener('mouseup', function() { changeValue(elementRed, 1) });
+        document.querySelector("#decrement-red").addEventListener('mouseup', function() { changeValue(elementRed, -1) });
 
-        document.querySelector("#increment-blue").addEventListener('click', function() { changeValue(elementBlue, 1) });
-        document.querySelector("#decrement-blue").addEventListener('click', function() { changeValue(elementBlue, -1) });
+        document.querySelector("#increment-blue").addEventListener('mouseup', function() { changeValue(elementBlue, 1) });
+        document.querySelector("#decrement-blue").addEventListener('mouseup', function() { changeValue(elementBlue, -1) });
 
         elementRed.addEventListener('click', function() { setValue(elementRed); });
         elementBlue.addEventListener('click', function() { setValue(elementBlue); });
