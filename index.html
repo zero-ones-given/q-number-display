@@ -35,19 +35,18 @@
         justify-content: space-around;
       }
       .number {
-        font-size: 30vw;
+        font-size: 33vw;
+        line-height: calc(50vh - 8px);
         font-weight: bold;
-        padding: 1vh 10px;
+        padding: 4px 0;
         display: flex;
         justify-content: space-between;
-        align-items: center;
       }
       .number:first-child {
         border-bottom: 4px solid #1c1c1c;
       }
       .number .button {
-        width: 40px;
-        height: 40px;
+        width: 50px;
         padding: 0;
         line-height: 40px;
         font-size: 30px;
@@ -61,7 +60,6 @@
       .button {
         background: #1c1c1c;
         color: #575757;
-        border-radius: 50%;
         border: 0;
         cursor: pointer;
         margin: 0;
@@ -71,13 +69,15 @@
         display: block;
         width: 150px;
         height: 150px;
+        border-radius: 50%;
+        border: 4px solid black;
         padding: 0;
         position: absolute;
         top: calc(50% - 80px);
         right: -25px;
         text-align: center;
         font-size: 100px;
-        line-height: 150px;
+        line-height: 145px;
       }
     </style>
   </head>
