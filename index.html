@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>q-numbers</title>
+    <style>
+      * {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        box-sizing: border-box;
+      }
+      html {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: black;
+        color: white;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        overflow: hidden;
+        position: fixed;
+        left: 0;
+        top: 0;
+      }
+      #numbers {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .number {
+        font-size: 30vw;
+        font-weight: bold;
+        padding: 1vh 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .number:first-child {
+        border-bottom: 4px solid #1c1c1c;
+      }
+      .number .button {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        line-height: 40px;
+        font-size: 30px;
+      }
+      #number-red {
+        color: #ff4242;
+      }
+      #number-blue {
+        color: #4278ff;
+      }
+      .button {
+        background: #1c1c1c;
+        color: #575757;
+        border-radius: 50%;
+        border: 0;
+        cursor: pointer;
+        margin: 0;
+        z-index: 1;
+      }
+      #increment-both {
+        display: block;
+        width: 150px;
+        height: 150px;
+        padding: 0;
+        position: absolute;
+        top: calc(50% - 80px);
+        right: -25px;
+        text-align: center;
+        font-size: 100px;
+        line-height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="numbers">
+      <div class="number">
+        <button id="decrement-red" class="button left" aria-label="Decrement red">-</button>
+        <span id="number-red" aria-label="Red number">1</span>
+        <button id="increment-red" class="button right" aria-label="Increment red">+</button>
+      </div>
+      <div class="number">
+        <button id="decrement-blue" class="button left" aria-label="Decrement blue">-</button>
+        <span id="number-blue" aria-label="Blue number">2</span>
+        <button id="increment-blue" class="button right" aria-label="Increment blue">+</button>
+      </div>
+    </div>
+
+    <button id="increment-both" class="button" aria-label="Increment both">+</button>
+
+    <script>
+      try {
+        var elementRed = document.querySelector("#number-red");
+        var elementBlue = document.querySelector("#number-blue");
+
+        function getValue(element) {
+          return parseInt(element.textContent) || 0;
+        }
+        
+        function normalize(value) {
+          return Math.max(value, 0);
+        }
+
+        function incrementBoth() {
+          var currentRed = getValue(elementRed);
+          var currentBlue = getValue(elementBlue);
+          var biggest = Math.max(currentRed, currentBlue)
+          elementRed.textContent = normalize(biggest + 1);
+          elementBlue.textContent = normalize(biggest + 2);
+        }
+
+        function changeValue(element, delta) {
+          var currentValue = getValue(element);
+          element.textContent = normalize(currentValue + delta);
+        }
+
+        function setValue(element) {
+          var currentValue = getValue(element);
+          var number = parseInt(prompt("Set value", currentValue));
+          if (number || number === 0) {
+            element.textContent = normalize(number);
+          }
+        }
+
+        document.querySelector("#increment-both").addEventListener('click', incrementBoth);
+
+        document.querySelector("#increment-red").addEventListener('click', function() { changeValue(elementRed, 1) });
+        document.querySelector("#decrement-red").addEventListener('click', function() { changeValue(elementRed, -1) });
+
+        document.querySelector("#increment-blue").addEventListener('click', function() { changeValue(elementBlue, 1) });
+        document.querySelector("#decrement-blue").addEventListener('click', function() { changeValue(elementBlue, -1) });
+
+        elementRed.addEventListener('click', function() { setValue(elementRed); });
+        elementBlue.addEventListener('click', function() { setValue(elementBlue); });
+      } catch(e) {
+        document.write(e);
+      }
+    </script>
+  </body>
+</html>
